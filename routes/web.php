@@ -123,3 +123,26 @@ Route::get('/update', function(){
 
 });
 
+Route::get('/createmore', function(){
+    $post = Post::create(['name'=>'first post']);
+
+    $tag = Tag::find(2);
+
+    $post->tags()->save($tag);
+
+    $vid = Video::create(['name'=>'vid.mov']);
+
+    $tag2 = Tag::find(3);
+
+    $vid->tags()->save($tag2);
+
+
+});
+
+Route::get('/readmore', function(){
+    $post = Post::findOrFail(3);
+    foreach($post->tags as $tag){
+        echo $tag;
+    }
+});
+
